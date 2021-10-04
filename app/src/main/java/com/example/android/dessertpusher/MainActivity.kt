@@ -73,6 +73,12 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         super.onCreate(savedInstanceState)
         dessertTimer = DessertTimer(this.lifecycle)
 
+        if(savedInstanceState!= null){
+            revenue = savedInstanceState.getInt("key_revenue")
+            dessertsSold = savedInstanceState.getInt("key_dessertsold")
+            dessertTimer.secondsCount = savedInstanceState.getInt("key_timer")
+        }
+
 
 
         // Use Data Binding to get reference to the views
@@ -106,6 +112,14 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
 
         // Show the next dessert
         showCurrentDessert()
+    }
+
+    override fun onSaveInstanceState(savedInstanceState: Bundle) {
+        super.onSaveInstanceState(savedInstanceState)
+        savedInstanceState.putInt("key_revenue", revenue)
+        savedInstanceState.putInt("key_dessertsold", dessertsSold)
+        savedInstanceState.putInt("key_timer", dessertTimer.secondsCount)
+
     }
 
     /**
