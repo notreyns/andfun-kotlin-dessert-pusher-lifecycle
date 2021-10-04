@@ -16,6 +16,7 @@
 
 package com.example.android.dessertpusher
 
+import DessertTimer
 import android.content.ActivityNotFoundException
 import android.os.Bundle
 import android.util.Log
@@ -34,6 +35,8 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
 
     private var revenue = 0
     private var dessertsSold = 0
+
+    private lateinit var dessertTimer: DessertTimer
 
     // Contains all the views
     private lateinit var binding: ActivityMainBinding
@@ -68,6 +71,9 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
     override fun onCreate(savedInstanceState: Bundle?) {
         Timber.i("onCreate called")
         super.onCreate(savedInstanceState)
+        dessertTimer = DessertTimer(this.lifecycle)
+
+
 
         // Use Data Binding to get reference to the views
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -178,9 +184,9 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         super.onRestart()
         Timber.i("onRestart() called")
     }
+
     override fun onDestroy() {
         super.onDestroy()
         Timber.i("onDestroy() called")
     }
-
 }
