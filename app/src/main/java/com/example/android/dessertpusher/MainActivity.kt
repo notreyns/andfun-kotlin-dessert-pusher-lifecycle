@@ -77,6 +77,7 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
             revenue = savedInstanceState.getInt("key_revenue")
             dessertsSold = savedInstanceState.getInt("key_dessertsold")
             dessertTimer.secondsCount = savedInstanceState.getInt("key_timer")
+          //  showCurrentDessert()
         }
 
 
@@ -119,7 +120,13 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         savedInstanceState.putInt("key_revenue", revenue)
         savedInstanceState.putInt("key_dessertsold", dessertsSold)
         savedInstanceState.putInt("key_timer", dessertTimer.secondsCount)
+        Timber.i("onSaveInstanceState Called")
 
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        Timber.i("onRestoreInstanceState Called")
+        super.onRestoreInstanceState(savedInstanceState)
     }
 
     /**
